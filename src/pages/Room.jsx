@@ -34,6 +34,19 @@ function Room() {
 
     const handleStatusChange = async (order) => {
         order.status = !order.status;
+        const response = await fetch("http://127.0.0.1:9406/update_order", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            orderId: order.id,
+            updatedData: order.status,
+          }),
+        });
+        if (!response.ok) {
+          throw new Error("Failed to update order status");
+        }
     }
 
   return (
@@ -49,7 +62,10 @@ function Room() {
                 <th>Items</th>
                 <th>Time</th>
                 <th>Amount</th>
-                <th>Status</th>
+                <th>C. Name</th>
+                <th>Address</th>
+                <th>Phone Number</th>
+                {/* <th>Status</th> */}
               </tr>
             </thead>
             <tbody ref={ordersContainerRef}>
@@ -61,13 +77,17 @@ function Room() {
                 <td>{order.items}</td>
                 <td>{order.time.substring(11, 16)}</td>
                 <td>{order.price}</td> 
-                <td>
+                <td>{order.name}</td>
+                <td>{order.address}</td>
+                <td>{order.phone_number}</td>
+
+                {/* <td>
                     <input
                         type="checkbox"
                         checked={order.status}
                         onChange={() => handleStatusChange(order)}
                     />
-                </td>
+                </td> */}
               </tr>
             ))} 
           </tbody>
@@ -78,4 +98,4 @@ function Room() {
   );
 }
 
-export default App;
+export default Room;

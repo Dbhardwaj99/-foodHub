@@ -15,12 +15,12 @@ function App() {
     <Provider store={store}>
       <Router>
         <Routes>       
-          <Route path='/login' element={<LoginPage/>}/>
-          <Route path='/register' element={<RegisterPage/>}/>
+          {/* <Route path='/login' element={<LoginPage/>}/>
+          <Route path='/register' element={<RegisterPage/>}/> */}
 
-          <Route element={<PrivateRoutes/>}>  {/* Protected pages will come under this */}
+          {/* <Route element={<PrivateRoutes/>}>  Protected pages will come under this */}
             <Route path='/' element={<Room/>}/>
-          </Route>
+          {/* </Route> */}
 
         </Routes>
       </Router>
